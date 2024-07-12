@@ -5,11 +5,7 @@ import cvlib as cv
 from cvlib.object_detection import draw_bbox
 
 def rescale(frame,rezhor=int(input("Introdu rezolutia orizontala: ")),rezvert=int(input("Introdu rezolutia verticala: "))):
-    indexhor=float(rezhor/640)
-    indexver=float(rezvert/480)
-    width=int(frame.shape[1]*indexhor)
-    height=int(frame.shape[0]*indexver)
-    dimens=(width,height)
+    dimens=(rezhor,rezvert)
     return cv2.resize(frame,dimens)
 
 camera=cv2.VideoCapture(0)
@@ -30,7 +26,7 @@ while camera.isOpened():
     bbox, label, conf = cv.detect_common_objects(framechanged, model="yolov3-tiny")
 
     for i in conf:
-        if i>=0.4:
+        if i>=0:
             output_image = draw_bbox(framechanged, bbox, label, conf)
             cv2.imshow("Fereastra Principala", output_image)
         else:

@@ -5,11 +5,7 @@ import cvlib as cv
 from cvlib.object_detection import draw_bbox
 
 def rescale(frame,rezhor=int(input("Introdu rezolutia orizontala: ")),rezvert=int(input("Introdu rezolutia verticala: "))):
-    indexhor=float(rezhor/640)
-    indexver=float(rezvert/480)
-    width=int(frame.shape[1]*indexhor)
-    height=int(frame.shape[0]*indexver)
-    dimens=(width,height)
+    dimens=(rezhor,rezvert)
     return cv2.resize(frame,dimens)
 
 camera=cv2.VideoCapture(0)
